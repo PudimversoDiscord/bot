@@ -33,6 +33,7 @@ class _Database(
     env_prefix="DATABASE_",
 ):
     """Configurações do banco de dados."""
+
     url: str = "postgresql+asyncpg://pdx:pdx@localhost:5432/pudimverso"
     """URL de conexão com o banco de dados."""
     pool: int = 10
@@ -47,18 +48,27 @@ class _Guild(
     env_prefix="GUILD_",
 ):
     """Configurações do servidor."""
+
     id: int = 1216042188996083774
     """ID do servidor."""
-    categories: dict[str, int] = {
-        "INFORMAÇÃO": 1216042190199980059,
-        "MODERAÇÃO": 0,  # FIXME: Adicionar ID da categoria de moderação
-        "EVENTOS": 1216042191781232722,
-        "COMUNIDADE": 1216042192389275771,
-        "ENTRETENIMENTO": 1216042192884338803,
-        "VOZ": 1233467914510925924,
-    }
 
-    """IDs das categorias do servidor."""
+
+Guild = _Guild()
+
+
+class _GuildCategories(
+    EnvConfig,
+    env_prefix="GUILD_CATEGORIES_",
+):
+    """Configurações das categorias do servidor."""
+
+    staff: int = 1216042190006911119
+    """ID da categoria de staff."""
+    community: int = 1216042192389275771
+    """ID da categoria de comunidade."""
+
+
+GuildCategories = _GuildCategories()
 
 
 class _GuildChannels(
@@ -66,7 +76,12 @@ class _GuildChannels(
     env_prefix="GUILD_CHANNELS_",
 ):
     """Configurações dos canais do servidor."""
-    announcements: int = 0
+
+    welcome: int = 1216042190199980053
+    """ID do canal de boas-vindas."""
+    rules: int = 1216042190199980061
+    """ID do canal de regras."""
+    announcements: int = 1216047976561246219
     """ID do canal de anúncios."""
 
 
@@ -79,16 +94,13 @@ class _GuildRoles(
 ):
     """Configurações dos cargos do servidor."""
 
-    admin: int = 1216042189193351213
-    """ID do cargo de administrador."""
-    mod: int = 1216042189193351212
-    """ID do cargo de moderador."""
-    bots: int = 1232037568963678258
-    """ID do cargo de bots."""
+    admins: int = 1216042189193351215
+    """ID do cargo de administradores."""
+    mods: int = 1216042189193351212
+    """ID do cargo de moderadores."""
 
 
 GuildRoles = _GuildRoles()
 
-# Atalhos
-MODERATION_ROLES = [GuildRoles.admin, GuildRoles.mod]
-"""Lista de cargos de moderação."""
+# Shorthands
+MODERATION_ROLES = [GuildRoles.admins, GuildRoles.mods]
