@@ -1,6 +1,14 @@
-FROM python:3.12-slim
+FROM python:3.12-bookworm
 
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN python -m pip install --no-cache-dir -U pip setuptools wheel
 RUN python -m pip install --no-cache-dir pdm

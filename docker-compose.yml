@@ -1,0 +1,45 @@
+services:
+  pdx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://pdx:pdx@database:5432/pudimverso
+      - DATABASE_POOL=10
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - pdx-default
+
+  database:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pdx
+      POSTGRES_PASSWORD: pdx
+      POSTGRES_DB: pudimverso
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pdx -d pudimverso"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pdx-default
+
+networks:
+  pdx-default:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
