@@ -33,7 +33,7 @@ class _Database(
     env_prefix="DATABASE_",
 ):
     """Configurações do banco de dados."""
-    url: str = ""
+    url: str = "postgresql+asyncpg://pdx:pdx@localhost:5432/pudimverso"
     """URL de conexão com o banco de dados."""
     pool: int = 10
     """Tamanho do pool de conexões."""
