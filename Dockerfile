@@ -16,7 +16,7 @@ RUN python -m pip install --no-cache-dir pdm
 COPY pyproject.toml pdm.lock ./
 RUN pdm export --prod -o requirements.txt && python -m pip install --no-cache-dir -r requirements.txt
 
-COPY pdx/ pdx/
+COPY bot/ bot/
 RUN python -m pip install --no-cache-dir .
 
-CMD [ "python", "-m", "pdx" ]
+CMD [ "python", "-m", "bot" ]

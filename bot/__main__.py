@@ -4,10 +4,10 @@ import discord
 import sqlalchemy
 import sqlalchemy.ext.asyncio
 from discord.ext import commands
-from pdx.constants import Bot
-from pdx.core import Utopiafy
-from pdx.data.database import engine
-from pdx.data.models import orm
+from bot.constants import Bot
+from bot.bot import Pudimversify
+from bot.data.database import engine
+from bot.data import orm
 
 
 async def setup_database() -> None:
@@ -25,7 +25,7 @@ def setup_logging():
 async def main():
     setup_logging()
     await setup_database()
-    bot = Utopiafy(
+    bot = Pudimversify(
         command_prefix=commands.when_mentioned_or(Bot.prefix),
         intents=discord.Intents.all(),
     )

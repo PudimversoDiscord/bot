@@ -6,7 +6,7 @@ authors = [
     { name = "BruRdgz", email = "bru.rdgz@gmail.com" },
 ]
 dependencies = ["discord-py>=2.5.0", "pydantic-settings>=2.8.0", "sqlalchemy>=2.0.38", "asyncpg>=0.30.0"]
-requires-python = "==3.13.*"
+requires-python = ">=3.12"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 

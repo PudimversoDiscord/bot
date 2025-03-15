@@ -1,11 +1,11 @@
 from contextlib import asynccontextmanager
 
-from pdx import constants
+from bot import constants
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
 engine = create_async_engine(
     constants.Database.url,
-    echo=False,
+    echo=True,
     pool_pre_ping=True,
     pool_size=constants.Database.pool,
     max_overflow=10,
