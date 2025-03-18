@@ -5,7 +5,14 @@ description = "Default template for PDM package"
 authors = [
     { name = "BruRdgz", email = "bru.rdgz@gmail.com" },
 ]
-dependencies = ["discord-py>=2.5.0", "pydantic-settings>=2.8.0", "sqlalchemy>=2.0.38", "asyncpg>=0.30.0"]
+dependencies = [
+    "discord-py>=2.5.0",
+    "pydantic-settings>=2.8.0",
+    "sqlalchemy>=2.0.38",
+    "asyncpg>=0.30.0",
+    "spacy==3.7.2",
+    "pt_core_news_sm@ https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-3.7.0/pt_core_news_sm-3.7.0-py3-none-any.whl",
+]
 requires-python = ">=3.12"
 readme = "README.md"
 license = { text = "Apache-2.0" }

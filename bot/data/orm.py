@@ -22,3 +22,10 @@ class MarkovTransition(Base):
     current_state: Mapped[str] = mapped_column(primary_key=True)
     next_state: Mapped[str] = mapped_column(primary_key=True)
     count: Mapped[int] = mapped_column(default=1, nullable=False, index=True)
+
+
+class ProhibitedState(Base):
+    """Estados proibidos para o modelo de Markov."""
+
+    __tablename__ = "prohibited_states"
+    state: Mapped[str] = mapped_column(primary_key=True)
